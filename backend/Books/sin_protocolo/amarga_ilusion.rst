@@ -1,39 +1,43 @@
+===============
 AMARGA ILUSION
-**************
+===============
 
-Me miras, te miro
-que inesperado giro
-mi desatino en tu destino.
-
-Llamalo error o desamor 
-ambos son un sinonimo,
-de lo anonimo.
-
-Es como finalizar un viaje
-circular la ironia esta en
-comenzar.
-
-Llamalo furtivo pero no
-soy tu fugitivo.
-
-Rafagas de pasion, que acaban
-en sublime explosion son
-las horas una ilusion en 
-esta union?
-
-Perdon, no uedo llamar union a una
-vaga ilusion.
-
-Lo admito, gran diversion.
-Pero no neguemos que es solo
-una confusion.
-
-Complice, me volvi y en amanteme converti.
-
-Lo se olvide mi lugar, o capaz se te olvido su lugar?
-
-Cuando la ilusion termina
-creeme no hay razon para entender
-al corazon.
-
-No quiero pelear, ni balbucear.
+    
+| Me miras, te miro,
+| que inesperado giro
+| mi desatino en tu destino.
+|
+| Llámalo error o desamor,
+| ambos son un sinónimo
+| de lo anónimo.
+|
+| Es como finalizar un viaje
+| circular la ironía está en
+| comenzar.
+|
+| Llámalo furtivo, 
+| pero no soy tu fugitivo.
+|
+| Ráfagas de pasión, 
+| que acaban en sublime explosión,
+| son las horas una ilusión en ¿esta unión?
+|
+| Perdón, no puedo llamar unión a una
+| vaga ilusión.
+|
+| Lo admito, gran diversión.
+| Pero no neguemos que es solo
+| una confusión.
+|
+| Cómplice me volví, 
+| y en amante me convertí.
+|
+| Lo sé, olvide mi lugar
+| ¿O capaz se te olvido su lugar?
+|
+| Cuando la ilusión termina
+| créeme no hay razón para entender
+| al corazón.
+|
+| No quiero pelear, 
+| ni balbucear.
