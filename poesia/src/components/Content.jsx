@@ -10,14 +10,15 @@ const Content = () => {
         const getBooks =  async () => {
             const response = await axios({
                 method:"get",
-                url: 'https://api.github.com/repos/romer8/Arawi/contents/backend/Books/sin_protocolo/d1.rst',
+                url: 'https://api.github.com/repos/romer8/Arawi/contents/backend/Books/noctambulo/d1.txt',
                 headers: {
                         Authorization: `bearer ${
                         process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN
                         }`,
                 }
             });
-            console.log(response.data.content);
+            const decodedContent = atob(response.data.content)
+            console.log(decodedContent);
             // return data
          setBook("hola")
 
