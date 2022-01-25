@@ -1,34 +1,69 @@
 import './App.css';
-import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import Hero from './components/Hero';
-import Content from './components/Content';
-
+import Home from './pages/index.js'
+import BookList from './pages/bookPage.js'
+import About from './pages/About';
+import Menu from './pages/Menu';
+import Dropdown from './components/Dropdown';
+import { useState, useEffect } from 'react';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = ()=>{
+    setIsOpen(!isOpen);
+  }
+
+  useEffect(()=>{
+    const hideMenu = ()=>{
+      if(window.innerWidth > 768 && isOpen){
+        setIsOpen(false);
+      }      
+    };
+    window.addEventListener('resize', hideMenu);
+    return () =>{
+      window.removeEventListener('resize', hideMenu);
+    };
+
+  })
+
   return (
     <div className="App">
       <Router>
+      <Navbar toggle = {toggle}/>
+
+      <Dropdown isOpen= {isOpen} toggle = {toggle}/>
         <Routes>
           <Route
             path='/' 
             element={
-              <>
-              <Navbar/>
-              <Hero/>
-              </>
+              <Home />
           }
           />
           <Route
             path='/content' 
             element={
-              <>
-              <Content/>
-              </>
+              <BookList/>
+          }
+          />
+          <Route
+            path='/about' 
+            element={
+              <About/>
+          }
+          />
+          <Route
+            path='/menu' 
+            element={
+              <Menu/>
           }
           />
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );
