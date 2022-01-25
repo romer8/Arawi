@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Books from './Books'
 
 const Content = () => {
-    const [books, setBook] = useState([])
+    const [books, setBooks] = useState([])
 
     useEffect(() => {
         console.log(process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN);
@@ -10,49 +11,27 @@ const Content = () => {
         const getBooks =  async () => {
             const response = await axios({
                 method:"get",
-                url: 'https://api.github.com/repos/romer8/Arawi/contents/backend/Books/noctambulo/d1.txt',
+                url: 'https://api.github.com/repos/romer8/Arawi/contents/backend/Books/books.json',
                 headers: {
                         Authorization: `bearer ${
                         process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN
                         }`,
                 }
             });
+            
             const decodedContent = atob(response.data.content)
-            console.log(decodedContent);
+            const myBooks = JSON.parse(decodedContent);
+            console.log(myBooks);
             // return data
-         setBook("hola")
+         setBooks(myBooks.books);
 
       };
       getBooks();
     }, []);
     
-
-    
-    // const getBooks =  async () => {
-    //     const bookFromGitHub = await fetchGithubData ()
-    //     setBook("hola")
-    //   };
-    //   getBooks();
-    // }, []);
-    
-
-    // const fetchGithubData = async () =>{
-    //     const response = await axios({
-    //         method:"get",
-    //         url: 'https://api.github.com/repos/romer8/Arawi',
-    //         headers: {
-    //                 Authorization: `bearer ${
-    //                 process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN
-    //                 }`,
-    //         }
-    //     });
-    //     console.log(response.data);
-    //     // return data
-
-    // } 
     return (
         <div>
-            <h1>hola</h1>
+            <Books books= {books} />
         </div>
     )
 }
