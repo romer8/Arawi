@@ -8,6 +8,7 @@ import Dropdown from './components/Dropdown';
 import { useState, useEffect } from 'react';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import Poems from './components/Poems';
 
 
 function App() {
@@ -60,6 +61,12 @@ function App() {
             path='/menu' 
             element={
               <Menu/>
+          }
+          />
+          <Route
+            path='/book/:code' 
+            element={
+              <Poems/>
           }
           />
         </Routes>
