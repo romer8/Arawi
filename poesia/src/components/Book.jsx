@@ -1,11 +1,15 @@
 import { useState } from 'react'
-
+import { Link } from 'react-router-dom';
 const Book = ( { book } ) => {
 
   return (
     
     <div className='flex flex-col justify-center items-center bg-white h-screen font-mono py-40'>
+      <Link to={`/book/${book.code}`} className='h-full rounded mb-20 shadow'>  
         <img src={book.coverimg} alt={book.name} className='h-full rounded mb-20 shadow' />
+      </Link>
+
+
         <div className='flex flex-col justify-center items-center'>
           <h2 className='text-2xl mb-2'>{book.name}</h2>
           <p className='mb-2'>{book.description}</p>
