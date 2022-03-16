@@ -9,6 +9,7 @@ import Verses from './Verses';
 const Chapter = () => {
     const params = useParams();
     const [verses, setVerses] = useState([]);
+    const [title, setTitle] = useState('');
     useEffect(() => {
         const getChapter =  async () => {
             const response = await axios({
@@ -24,6 +25,8 @@ const Chapter = () => {
             const encoded = response.data.content;
             const decoded = decodeURIComponent(escape(window.atob( encoded )));
             const array_decoded = decoded.split("```");
+            const title = array_decoded[0].split('##')[1]
+            setTitle(title);
             const array_verses=array_decoded.filter((a,i)=>i%2===1);
             console.log(array_verses);
             setVerses(array_verses);
@@ -38,6 +41,7 @@ const Chapter = () => {
             <div className="flex-auto bg-[#3A506B] w-12 h-full text-sm text-slate-50"></div>
         </div> */}
         <div className = 'flex flex-col h-full text-sm  items-center'>
+            <h2 className='mt-4 w-full font-bold bg-zinc-900 text-white p-2 text-center'>{title}</h2>
             <Verses verses = {verses}/>
             {/* <ReactMarkdown remarkPlugins={[gfm]}>{content}</ReactMarkdown> */}
         </div>

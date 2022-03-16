@@ -5,7 +5,7 @@ const Verse = ({ verse } ) => {
  
 
   return (
-    <div className="flex flex-col h-full font-mono p-4">
+    <div className="flex flex-col h-full font-mono p-4 p-2">
       {verse.split('\n').map(str => <Line line= {str} />)}
     </div>
   )
