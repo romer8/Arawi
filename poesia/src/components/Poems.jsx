@@ -6,12 +6,7 @@ import Poem from './Poem';
 export const Poems = () => {
  
   const [poems, setPoems] = useState([])
-  const [colL, setColL] = useState()
-  const [colM, setColM] = useState()
-  const [colS, setColS] = useState()
-
   const params = useParams();
-
 
   useEffect(() => {
       console.log(params);
@@ -27,22 +22,16 @@ export const Poems = () => {
           });
           
           const myPoems = response.data
-          console.log(myPoems);
           // return data
           setPoems(myPoems);
-          setColL(Math.round(myPoems.length/2));
-          console.log(colL,Math.round(myPoems.length/2));
-          setColM(Math.round(colL/2));
-          console.log(colM,Math.round(colL/2));
-          setColS(Math.round(colM/2));
-          console.log(colS,Math.round(colM/2));
+
     };
     getPoems();
   }, []);
   return(
-    <div className={'grid grid-cols-'+colL+ ' gap-4 lg:text-lg lg:grid-cols-'+colL+ ' md:text-base md:grid-cols-'+colM+ ' sm:text-3sm sm:grid-cols-'+colS+ ' text-lg font-black m-8 h-screen'} >
+    <div className={`grid gap-2 grid-cols-1 text-sm font-black m-2 h-5/6 xl:grid-cols-4 xl:text-xl xl:h-screen lg:grid-cols-2 lg:text-lg lg:h-screen md:text-base md:grid-cols-2 md:m-8 md:gap-8 sm:text-sm sm:grid-cols-1 sm:m-2`} >
       {poems.map((poem, index) => (
-        <Poem key={index} poem={poem} index={index} />
+        <Poem key={index} poem={poem} index={index}/>
         ))}
    </div>
   );

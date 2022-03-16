@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hero-pattern': "url('./img/hero3.jpg')",
+      },
+      scale:{
+        flip: '-1'
       }
 
     },

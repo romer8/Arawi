@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Poems from './components/Poems';
+import Chapter from './components/Chapter';
 
 
 function App() {
@@ -67,6 +68,12 @@ function App() {
             path='/book/:code' 
             element={
               <Poems/>
+          }
+          />
+          <Route
+            path='/book/:code/:chapter' 
+            element={
+              <Chapter/>
           }
           />
         </Routes>
