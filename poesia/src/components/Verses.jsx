@@ -9,7 +9,7 @@ const Verses = ( { verses }) => {
     //     setfalseNewVerse(newText);
     // }
   return (
-    <div className='h-full'>
+    <div className='h-full space-y-2 mt-4 backdrop-sepia-0 bg-white/30'>
     {verses.map((verse, index) => (
 
         <Verse key={index} verse={verse} />

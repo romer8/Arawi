@@ -5,11 +5,16 @@ import  ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import './Chapter.css'
 import Verses from './Verses';
+import { IoIosArrowBack } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 const Chapter = () => {
+    const navigate = useNavigate();
+
     const params = useParams();
     const [verses, setVerses] = useState([]);
     const [title, setTitle] = useState('');
+
     useEffect(() => {
         const getChapter =  async () => {
             const response = await axios({
@@ -35,15 +40,22 @@ const Chapter = () => {
     }, []);
   return (
       
-    <div className='h-full relative bg-white'>
-        {/* <div className='absolute opacity-75	flex flex-row w-1/5 items-center bg-slate-900 h-full w-full lg:w-min lg:opacity-100'>
+    <div className='h-full relative'>
+        {/* <div className='absolute opacity-75	flex flex-row w-1/2 items-center bg-slate-900 h-full w-full lg:w-min lg:opacity-100'>
             <div className="flex-auto bg-neutral-900 w-12 h-full text-slate-50"></div>
             <div className="flex-auto bg-[#3A506B] w-12 h-full text-sm text-slate-50"></div>
         </div> */}
-        <div className = 'flex flex-col h-full text-sm  items-center'>
-            <h2 className='mt-4 w-full font-bold bg-zinc-900 text-white p-2 text-center'>{title}</h2>
+        <div className = 'flex flex-col h-full text-sm items-center'>
+            <div className = 'mt-4 bg-zinc-900 flex flex-row h-full text-sm items-center w-full lg:bg-white' >
+                <div className='w-full font-bold text-white p-2 cursor-pointer'>  
+                    <span className='flex bg-cyan-900 p-2 rounded-md w-fit items-center space-x-4' onClick={() => navigate(-1)}>
+                        <IoIosArrowBack/>{params.chapter.split('.')[0]}
+                    </span>
+                </div>
+                <h2 className='w-full font-bold bg-zinc-900 text-white p-2 text-center lg:w-1/2 rounded-md'>{title}</h2>
+                <div className='w-full font-bold'></div>
+            </div>
             <Verses verses = {verses}/>
-            {/* <ReactMarkdown remarkPlugins={[gfm]}>{content}</ReactMarkdown> */}
         </div>
     </div>
 
