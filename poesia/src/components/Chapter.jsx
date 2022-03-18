@@ -41,30 +41,32 @@ const Chapter = () => {
     }, []);
   return (
       
-    // siempre al medio la barra
+    // make the title bar always to be on top after the header please
     <div className='h-full relative'>
-        <div className='fixed opacity-75 flex flex-row w-full items-center bg-slate-900 h-1/2 w-full top-56 left-2 rounded-md lg:w-min lg:opacity-100'>
-            <div className="flex flex-col bg-neutral-900 w-12 h-full text-slate-50 space-y-2">
-                <FaWhatsapp className="h-6 w-6"/>
-                <FiFacebook className="h-6 w-6"/>
+        {/* <div className='opacity-25 absolute z-0 bg-transparent p-2 left-2 rounded-md h-full w-12 space-y-6 text-slate-50 lg:bg-slate-800'>
 
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        </div> */}
+        <div className='fixed flex flex-col items-center bg-zinc-900 p-2 top-56 bottom-56 left-2 rounded-md h-fit space-y-6 text-slate-50 opacity-75 lg:w-min'>
+                <FaWhatsapp className="h-6 w-6 cursor-pointer"/>
+                <FiFacebook className="h-6 w-6 cursor-pointer"/>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-            </div>
         </div>
+        
         <div className = 'flex flex-col h-full text-sm items-center'>
-            <div className = 'mt-4 bg-zinc-900 flex flex-row h-full text-sm items-center w-full lg:bg-white' >
+            <div className = 'mt-4 bg-zinc-900 flex flex-row h-full text-sm items-center w-full' >
                 <div className='w-full font-bold text-white p-2 cursor-pointer'>  
                     <span className='flex bg-cyan-900 p-2 rounded-md w-fit items-center space-x-4' onClick={() => navigate(-1)}>
                         <IoIosArrowBack/>{params.chapter.split('.')[0]}
                     </span>
                 </div>
-                <h2 className='w-full font-bold bg-zinc-900 text-white p-2 text-center lg:w-1/2 rounded-md'>{title}</h2>
+                <h2 className='w-full font-bold bg-zinc-900 text-white p-2 text-center lg:w-1/2 rounded-md lg:bg-neutral-700'>{title}</h2>
                 <div className='w-full font-bold'></div>
             </div>
             <Verses verses = {verses}/>
         </div>
+
     </div>
 
   );
