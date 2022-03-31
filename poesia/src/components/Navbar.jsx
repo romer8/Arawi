@@ -8,7 +8,7 @@ const Navbar = ({ toggle }) => {
             shadow-sm font-mono'
         >
             <Link to='/' className='pl-8'>
-             ARAWI
+             <span className='bg-teal-900 p-1.5	text-slate-300 rounded-lg'>ARAWI</span>
             </Link>
             <div className="px4 cursor-pointer md:hidden" onClick={toggle}>
             <svg 
