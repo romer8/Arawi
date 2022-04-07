@@ -1,19 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
-import  ReactMarkdown from 'react-markdown'
-import gfm from 'remark-gfm'
+import Markdown from 'markdown-to-jsx';
+
 import './Chapter.css'
 import Verses from './Verses';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaQrcode } from 'react-icons/fa';
 import { FiFacebook } from 'react-icons/fi';
+
+
 const Chapter = () => {
     const navigate = useNavigate();
 
     const params = useParams();
-    const [verses, setVerses] = useState([]);
+    // const [verses, setVerses] = useState([]);
+    const [verses, setVerses] = useState('');
     const [title, setTitle] = useState('');
 
     useEffect(() => {
@@ -30,12 +33,14 @@ const Chapter = () => {
             
             const encoded = response.data.content;
             const decoded = decodeURIComponent(escape(window.atob( encoded )));
+            console.log(decoded);
+            setVerses(decoded)
             const array_decoded = decoded.split("```");
             const title = array_decoded[0].split('##')[1]
             setTitle(title);
-            const array_verses=array_decoded.filter((a,i)=>i%2===1);
-            console.log(array_verses);
-            setVerses(array_verses);
+            // const array_verses=array_decoded.filter((a,i)=>i%2===1);
+            // console.log(array_verses);
+            // setVerses(array_verses);
         };
         getChapter();
     }, []);
@@ -64,7 +69,33 @@ const Chapter = () => {
                 <h2 className='w-full font-bold bg-zinc-900 text-white p-2 text-center lg:w-1/2 rounded-md lg:bg-neutral-700'>{title}</h2>
                 <div className='w-full font-bold'></div>
             </div>
-            <Verses verses = {verses}/>
+            {/* <Verses verses = {verses}/> */}
+            <div className='h-full space-y-2 mt-4 backdrop-sepia-0 bg-white/30 flex flex-col font-mono'>
+                <Markdown 
+                    options={{ 
+                        forceBlock: true,
+                        wrapper: React.Fragment,            
+                        overrides: {
+                            blockquote: {
+                                props: {
+                                    className: 'hidden',
+                                },
+                            },
+                            code:{
+                                props:{
+                                    className:'text-center'
+                                },
+                            }
+                        }, 
+                        
+                    }}
+                >
+                    {verses}
+                </Markdown>
+
+            </div>
+
+
         </div>
 
     </div>
