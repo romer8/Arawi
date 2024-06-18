@@ -9,15 +9,33 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaQrcode } from 'react-icons/fa';
 import { FiFacebook } from 'react-icons/fi';
-
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 const Chapter = () => {
+    const printRef = React.useRef();
+
     const navigate = useNavigate();
 
     const params = useParams();
     // const [verses, setVerses] = useState([]);
     const [verses, setVerses] = useState('');
     const [title, setTitle] = useState('');
+
+    const handleDownloadPdf = async () => {
+        const element = printRef.current;
+        const canvas = await html2canvas(element);
+        const data = canvas.toDataURL('image/png');
+    
+        const pdf = new jsPDF();
+        const imgProperties = pdf.getImageProperties(data);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight =
+          (imgProperties.height * pdfWidth) / imgProperties.width;
+    
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`${title}.pdf`);
+    };
 
     useEffect(() => {
         const getChapter =  async () => {
@@ -53,13 +71,15 @@ const Chapter = () => {
         </div> */}
         <div className='fixed flex flex-col items-center bg-zinc-900 p-2 top-56 bottom-56 left-2 rounded-md h-fit space-y-6 text-slate-50 opacity-75 lg:w-min'>
                 <FaWhatsapp className="h-6 w-6 cursor-pointer"/>
+                 <a href="whatsapp://send?text= Please Visit "  rel="nofollow noopener" target="_blank" className="share-icon">Share via Whatsapp</a>
+
                 <FiFacebook className="h-6 w-6 cursor-pointer"/>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg onClick={handleDownloadPdf} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
         </div>
         
-        <div className = 'flex flex-col h-full text-sm items-center'>
+        <div ref={printRef} className = 'flex flex-col h-full text-sm items-center'>
             <div className = 'mt-4 bg-zinc-900 flex flex-row h-full text-sm items-center w-full' >
                 <div className='w-full font-bold text-white p-2 cursor-pointer'>  
                     <span className='flex bg-cyan-900 p-2 rounded-md w-fit items-center space-x-4' onClick={() => navigate(-1)}>
@@ -70,7 +90,7 @@ const Chapter = () => {
                 <div className='w-full font-bold'></div>
             </div>
             {/* <Verses verses = {verses}/> */}
-            <div className='h-full space-y-2 mt-4 backdrop-sepia-0 bg-white/30 flex flex-col font-mono'>
+            <div  className='h-full space-y-2 mt-4 backdrop-sepia-0 bg-white/30 flex flex-col font-mono'>
                 <Markdown 
                     options={{ 
                         forceBlock: true,
